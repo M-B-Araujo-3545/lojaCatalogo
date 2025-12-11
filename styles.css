@@ -1,0 +1,618 @@
+/* styles.css */
+
+/* 1. Reset Básico e Variáveis */
+:root {
+    /* Cores */
+    --cor-primaria: #007bff; /* Azul vibrante para botões e links */
+    --cor-secundaria: #6c757d; /* Cinza para textos secundários */
+    --fundo-claro: #f8f9fa; /* Fundo geral */
+    --fundo-card: #ffffff; /* Fundo dos cards de produto */
+    --borda-clara: #dee2e6;
+    --texto-escuro: #343a40;
+    --texto-claro: #ffffff;
+
+    /* Espaçamentos */
+    --padding-sm: 0.5rem;
+    --padding-md: 1rem;
+    --padding-lg: 2rem;
+    
+    /* Fontes */
+    --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+   
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--fonte-principal);
+    line-height: 1.6;
+    color: var(--texto-escuro);
+    background-color: var(--fundo-claro);
+    padding-bottom: 50px; /* Espaço para o footer */
+}
+
+/* Esconde visualmente mas mantém para leitores de tela */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+a {
+    color: var(--cor-primaria);
+    text-decoration: none;
+}
+
+/* 2. Layout Global */
+.cabecalho {
+    background-color: var(--fundo-card);
+    padding: var(--padding-lg) var(--padding-md);
+    border-bottom: 1px solid var(--borda-clara);
+    text-align: center;
+    position: relative; /* allow absolute positioning of nav-toggle inside header */
+}
+
+.logo-link {
+    display: inline-block;
+    color: var(--texto-escuro);
+    margin-bottom: var(--padding-sm);
+}
+
+.cabecalho h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.slogan {
+    color: var(--cor-secundaria);
+    margin-bottom: var(--padding-md);
+}
+
+/* Nav principal (botões) */
+.nav-principal {
+    background: var(--fundo-card);
+    border-bottom: 1px solid var(--borda-clara);
+    padding: 0.5rem var(--padding-md);
+}
+.nav-list {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+.nav-btn {
+    display: inline-block;
+    padding: 0.5rem 0.9rem;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--texto-escuro);
+    border: 1px solid transparent;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.18s ease-in-out;
+}
+.nav-btn:hover, .nav-btn:focus {
+    background: var(--cor-primaria);
+    color: var(--texto-claro);
+    border-color: var(--cor-primaria);
+}
+.nav-btn[aria-current='page'] {
+    background: var(--cor-primaria);
+    color: var(--texto-claro);
+}
+
+@media (max-width: 768px) {
+    .nav-list { gap: 0.25rem; flex-wrap: wrap; }
+    .nav-btn { padding: 0.45rem 0.6rem; font-size: 0.95rem; }
+}
+
+/* Nav toggle (hamburger) */
+.nav-toggle {
+    display: none; /* visible only on mobile */
+    background: transparent;
+    border: none;
+    padding: 0.4rem;
+    margin-left: 0.5rem;
+    cursor: pointer;
+}
+.nav-toggle .hamburger {
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    position: relative;
+    background-color: var(--texto-escuro);
+}
+.nav-toggle .hamburger::before,
+.nav-toggle .hamburger::after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 24px;
+    background-color: var(--texto-escuro);
+    position: absolute;
+    left: 0;
+}
+.nav-toggle .hamburger::before { top: -7px; }
+.nav-toggle .hamburger::after { top: 7px; }
+
+/* On mobile: hide nav-list by default; when .open is set show as vertical list */
+@media (max-width: 768px) {
+    .nav-toggle { display: inline-block; }
+    .nav-principal .nav-list {
+        display: none;
+        flex-direction: column;
+        gap: 0.2rem;
+        width: 100%;
+        padding: 0.5rem;
+    }
+    /* Position the hamburger in the top-left corner of the header */
+    .nav-toggle {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        z-index: 50;
+    }
+    /* Add left padding to header content so the hamburger doesn't overlap the logo */
+    .cabecalho { padding-left: 52px; }
+    .nav-principal .nav-list.open {
+        display: flex;
+    }
+    .nav-principal {
+        position: relative;
+    }
+    .nav-list li { text-align: center; }
+    body.nav-open { overflow: hidden; }
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--padding-lg) var(--padding-md);
+}
+
+footer {
+    background-color: var(--texto-escuro);
+    color: var(--texto-claro);
+    text-align: center;
+    padding: var(--padding-md);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* 3. Catálogo de Produtos */
+.barra-pesquisa {
+    display: flex;
+    justify-content: center;
+    gap: var(--padding-sm);
+    max-width: 600px;
+    margin: var(--padding-md) auto;
+    position: relative; /* Necessário para posicionar sugestões */
+}
+
+.campo-pesquisa {
+    padding: var(--padding-sm);
+    flex-grow: 1;
+    border: 1px solid var(--borda-clara);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.botao-pesquisa {
+    background-color: var(--cor-primaria);
+    color: var(--texto-claro);
+    border: none;
+    padding: var(--padding-sm) var(--padding-md);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botao-pesquisa:hover {
+    background-color: #0056b3;
+}
+
+/* Sugestões de Pesquisa */
+.sugestoes {
+    position: absolute;
+    top: 100%; /* Abaixo do campo de busca */
+    left: 0;
+    right: 0;
+    background-color: var(--fundo-card);
+    border: 1px solid var(--borda-clara);
+    border-top: none;
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sugestao-item {
+    padding: var(--padding-sm);
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.sugestao-item:hover, .sugestao-item:focus {
+    background-color: var(--fundo-claro);
+}
+
+/* Lista do Catálogo */
+.catalogo {
+    display: grid;
+    /* Grid responsivo: Min 250px por coluna, preenche o espaço */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: var(--padding-lg);
+    list-style: none;
+    padding: 0;
+    margin-top: var(--padding-lg);
+}
+
+.produto-link {
+    display: block;
+    border: 1px solid var(--borda-clara);
+    border-radius: 8px;
+    padding: var(--padding-md);
+    background-color: var(--fundo-card);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%; /* Garante que todos os cards tenham a mesma altura vertical */
+}
+
+.produto-link:hover {
+    transform: translateY(-5px); /* Efeito de elevação sutil */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.produto-imagem {
+    width: 100%;
+    /* Altura fixa ajuda a alinhar os títulos, use object-fit: cover */
+    height: 200px; 
+    object-fit: contain; 
+    border-radius: 4px;
+    margin-bottom: var(--padding-sm);
+}
+
+.produto-nome {
+    font-size: 1.25rem;
+    margin: 0 0 0.25rem 0;
+    color: var(--texto-escuro);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Otimiza a visualização de nomes longos */
+}
+
+.produto-preco {
+    font-size: 1.5rem;
+    color: #28a745; /* Cor de destaque para o preço */
+    font-weight: bold;
+    margin-bottom: var(--padding-sm);
+}
+
+.produto-marca {
+    color: var(--cor-secundaria);
+    font-size: 0.9rem;
+}
+
+/* 4. Detalhes do Produto */
+
+.detalhes-produto-grid {
+    display: grid;
+    gap: var(--padding-lg);
+    /* Layout padrão: 1 coluna para imagem (aumentada), 1 para info -> imagem com +50% de largura comparado a 1fr/2fr (33% -> 50%) */
+    grid-template-columns: 1fr 1fr; 
+    background-color: var(--fundo-card);
+    padding: var(--padding-lg);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.produto-midia {
+    padding: var(--padding-md);
+    border: 1px solid var(--borda-clara);
+    border-radius: 8px;
+    text-align: center;
+}
+
+#imagem-produto {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Carousel styles */
+.produto-carrossel {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    width: 32px; /* reduzido de 40px */
+    height: 32px; /* reduzido de 40px */
+    border-radius: 16px; /* ajustado para manter forma circular */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem; /* reduzido para manter proporção */
+    z-index: 5;
+}
+/* Ocultar setas do carrossel por padrão, caso o usuário queira removê-las. */
+.carousel-btn { display: none !important; }
+
+.carousel-btn:focus {
+    outline: 2px solid var(--cor-primaria);
+}
+
+    /* prev/next positioning removed (arrows hidden) */
+
+.thumbnails {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: var(--padding-sm);
+}
+
+.thumbnails img {
+    width: 64px;
+    height: 48px;
+    object-fit: cover;
+    border: 2px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.thumbnails img.active {
+    border-color: var(--cor-primaria);
+}
+
+/* Estilo para lista de cores dentro das especificações */
+.cores-list {
+    margin-top: 0.25rem;
+    margin-left: 1rem;
+    list-style-type: disc;
+}
+.cores-list li {
+    margin-bottom: 0.15rem;
+}
+
+/* Ajuste para telas pequenas: setas ainda funcionais, porém um pouco menores */
+@media (max-width: 768px) {
+    .carousel-btn {
+        width: 28px;
+        height: 28px;
+        border-radius: 14px;
+        font-size: 0.95rem;
+    }
+    /* prev/next positioning removed (arrows hidden) */
+}
+
+.produto-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--padding-sm);
+}
+
+.preco-destaque {
+    font-size: 2rem;
+    color: #dc3545; /* Cor de ênfase para o preço no detalhe */
+    font-weight: bold;
+    margin-bottom: var(--padding-md);
+}
+
+.descricao-longa {
+    margin-bottom: var(--padding-lg);
+}
+
+#titulo-especificacoes {
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--borda-clara);
+    padding-bottom: var(--padding-sm);
+    margin-bottom: var(--padding-md);
+}
+
+#lista-especificacoes {
+    list-style: disc;
+    margin-left: var(--padding-lg);
+}
+
+.produto-acoes {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    gap: var(--padding-md);
+    margin-top: var(--padding-lg);
+}
+
+.botao-whatsapp, .botao-compartilhar {
+    display: inline-block;
+    padding: var(--padding-sm) var(--padding-md);
+    border-radius: 4px;
+    font-weight: bold;
+    transition: opacity 0.3s;
+    text-align: center;
+    flex-grow: 1; /* Permite que os botões cresçam */
+}
+
+.botao-whatsapp {
+    background-color: #25d366; /* Cor do WhatsApp */
+    color: var(--texto-claro);
+    border: none;
+}
+
+.botao-whatsapp:hover {
+    background-color: #1eab52;
+}
+
+.botao-compartilhar {
+    background-color: var(--cor-secundaria);
+    color: var(--texto-claro);
+    border: none;
+    cursor: pointer;
+}
+
+.botao-compartilhar:hover {
+    background-color: #5a6268;
+}
+
+.nav-secundaria {
+    margin-top: var(--padding-lg);
+    padding: var(--padding-md);
+    border-top: 1px solid var(--borda-clara);
+}
+
+.link-voltar {
+    font-weight: bold;
+    display: inline-block;
+}
+
+.mensagem-status {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--cor-secundaria);
+    margin-top: var(--padding-lg);
+}
+
+/* 5. Responsividade */
+
+@media (max-width: 768px) {
+    /* Layout do Detalhe: Empilha imagem e info */
+    .detalhes-produto-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Ajuste o tamanho da fonte no mobile */
+    .produto-info h1 {
+        font-size: 2rem;
+    }
+
+    .preco-destaque {
+        font-size: 1.75rem;
+    }
+
+    /* Reduz espaçamento no mobile */
+    main {
+        padding: var(--padding-md);
+    }
+
+    /* Botões de ação em coluna no mobile */
+    .produto-acoes {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .produto-nome {
+        font-size: 1rem;
+    }
+    .produto-preco {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.0rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .cabecalho p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-btn {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .botao-pesquisa {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sugestao-item {
+        padding: 0.4rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .thumbnails img {
+        width: 48px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-btn {
+        width: 24px;
+        height: 24px;
+        border-radius: 12px;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .detalhes-produto-grid {
+        padding: var(--padding-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .produto-acoes {
+        gap: var(--padding-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: var(--padding-sm);
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .barra-pesquisa {
+        align-self: start;
+        gap: var(--padding-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-principal .nav-list {
+        gap: 0.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-toggle {
+        float: left;
+        top: 50px;
+        right: auto;
+    }
+}
+/* Fim do styles.css */

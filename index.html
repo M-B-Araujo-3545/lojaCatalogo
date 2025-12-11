@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catálogo de Produtos | FB Móveis e Eletros</title>
+  <link rel="icon" href="imgFavicon/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="cabecalho">
+    
+    <div class="header-left">
+      <!-- Botão hamburguer para navegação mobile -->
+      <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-list-main">
+      <span class="hamburger">​</span>
+    </button>
+      <a href="index.html" class="logo-link">
+        <h1>FB Móveis e Eletros</h1>
+      </a>
+    </div>
+    <p class="slogan">Av. sandu Norte, Qnc 09 Loja 01 e 02 Taguatinga Norte Brasìlia DF</p>
+    
+    
+    <div class="header-right">
+
+    <form id="form-pesquisa" class="barra-pesquisa" autocomplete="off" role="search">
+      <label for="barra-pesquisa" class="visually-hidden">Buscar produto</label>
+      <input
+        type="text"
+        id="barra-pesquisa"
+        placeholder="Buscar produto por nome, marca ou ID..."
+        class="campo-pesquisa"
+        aria-autocomplete="list"
+        aria-haspopup="listbox"
+        aria-controls="sugestoes-pesquisa"
+      />
+      <button type="submit" class="botao-pesquisa">Pesquisar</button>
+      <div id="sugestoes-pesquisa" class="sugestoes" role="listbox" aria-label="Sugestões de pesquisa"></div>
+    </form>
+    </div>
+  </header>
+  <nav class="nav-principal" aria-label="Navegação principal">
+  <ul id="nav-list-main" class="nav-list">
+      <li><a class="nav-btn" href="index.html" aria-current="page">Home</a></li>
+      <li><a class="nav-btn" href="https://cataligo-fb-escritorio">Linha Escritório</a></li>
+      <li><a class="nav-btn" href="https://fabio-moveis">Semi-novos</a></li>
+      <li><a class="nav-btn" href="contatos.html">Contatos</a></li>
+      <li><a class="nav-btn" href="sibaMais.html">Saiba Mais</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <ul id="lista-produtos" class="catalogo" aria-live="polite" aria-busy="false">
+      </ul>
+    <p id="mensagem-status" class="mensagem-status" role="status" style="display: none;">Nenhum produto encontrado.</p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 FB Móveis e Eletros</p>
+  </footer>
+
+  <script src="produto.js" defer></script>
+  <script src="script.js" defer></script>
+  <script src="nav.js" defer></script>
+</body>
+</html>

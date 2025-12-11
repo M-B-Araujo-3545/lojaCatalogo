@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="titulo-pagina">Detalhes do Produto | FB Móveis e Eletros</title>
+    <link rel="icon" href="imgFavicon/favicon1.ico.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header class="cabecalho">
+        <div class="header-left">
+            <a href="index.html" class="logo-link">
+                <h1>FB Móveis e Eletros</h1>
+            </a>
+            <p class="slogan">Av. sandu Norte, Qnc 09 Loja 01 e 02 Taguatinga Norte Brasìlia DF</p>
+        </div>
+        <!-- Botão hamburguer para navegação mobile -->
+        <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-list-main">
+            <span class="hamburger">​</span>
+        </button>
+                <div class="header-right">
+
+                <form id="form-pesquisa" class="barra-pesquisa" autocomplete="off" role="search">
+                    <label for="barra-pesquisa" class="visually-hidden">Buscar produto</label>
+                    <input
+                        type="text"
+                        id="barra-pesquisa"
+                        placeholder="Buscar produto por nome, marca ou ID..."
+                        class="campo-pesquisa"
+                        aria-autocomplete="list"
+                        aria-haspopup="listbox"
+                        aria-controls="sugestoes-pesquisa"
+                    />
+                    <button type="submit" class="botao-pesquisa">Pesquisar</button>
+                    <div id="sugestoes-pesquisa" class="sugestoes" role="listbox" aria-label="Sugestões de pesquisa"></div>
+                </form>
+                </div>
+    </header>
+    <nav class="nav-principal" aria-label="Navegação principal">
+        <ul id="nav-list-main" class="nav-list">
+            <li><a class="nav-btn" href="index.html">Home</a></li>
+            <li><a class="nav-btn" href="contatos.html">Contatos</a></li>
+            <li><a class="nav-btn" href="sibaMais.html">Saiba Mais</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div id="detalhes-produto-container" class="detalhes-produto-grid">
+            <figure class="produto-midia">
+                <div class="produto-carrossel" aria-live="polite" tabindex="0" role="region" aria-label="Carrossel de imagens do produto">
+                    <img id="imagem-produto" src="" alt="Imagem do produto" loading="lazy" />
+                </div>
+                <figcaption id="legenda-produto" class="visually-hidden">Imagem ilustrativa do produto</figcaption>
+                <div id="thumbnails" class="thumbnails" aria-hidden="false"></div>
+            </figure>
+
+            <div class="produto-info">
+                <h1 id="nome-produto"></h1>
+                <p id="preco-produto" class="preco-destaque">—</p>
+                <p id="descricao-produto" class="descricao-longa">Descrição não disponível.</p>
+
+                <h2 id="titulo-especificacoes">Especificações Técnicas</h2>
+                <ul id="lista-especificacoes"></ul>
+
+                <div class="produto-acoes">
+                    <a id="whatsapp-link" href="#" target="_blank" class="botao-whatsapp" title="Fale conosco para mais informações.">
+                        Falar com vendedor via WhatsApp
+                    </a>
+                    <button id="compartilhar-btn" type="button" class="botao-compartilhar">Compartilhar esta página</button>
+                </div>
+            </div>
+        </div> 
+
+        <nav aria-label="Navegação secundária" class="nav-secundaria">
+            <a href="index.html" class="link-voltar">← Voltar para a página inicial</a>
+        </nav>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 FB Móveis e Eletros</p>
+    </footer>
+    
+    <script src="produto.js" defer></script>
+    <script src="script-detalhe.js" defer></script>
+    <script src="nav.js" defer></script>
+    
+</body>
+</html>
