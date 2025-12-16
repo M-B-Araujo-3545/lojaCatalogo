@@ -198,12 +198,8 @@ function renderizarDetalhes(produto) {
         listaEspecificacoesElement.appendChild(liPai);
     })();
 
-    // Descrição (repetida na área principal)
-    (function() {
-        const li = document.createElement('li');
-        li.textContent = `Descrição: ${produto.descricao || '—'}`;
-        listaEspecificacoesElement.appendChild(li);
-    })();
+    // Nota: descrição principal do produto não é mais adicionada à lista de especificações
+    // A descrição do produto permanece em '#descricao-produto' logo abaixo do preço.
 
     // 5. Ações: WhatsApp
     const mensagemPadrao = encodeURIComponent(`Olá, gostaria de saber mais sobre o produto: ${produto.nome} (ID: ${produto.id}).`);

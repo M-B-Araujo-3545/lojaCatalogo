@@ -1,0 +1,270 @@
+/* -------------------- */
+/* 1. RESET E ESTILOS BÁSICOS (Repete o saibaMas.css para consistência) */
+/* -------------------- */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* -------------------- */
+/* 2. CABEÇALHO (HEADER) */
+/* -------------------- */
+
+header {
+    background-color: #ffffff; /* Azul primário */
+    color: rgb(0, 0, 0);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+
+}
+
+.header-left .logo-link {
+    color: rgb(0, 0, 0);
+    display: block;
+
+}
+
+.header-left h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.2rem;
+
+}
+
+.header-left .slogan {
+    font-size: 0.85rem;
+    opacity: 0.9;
+
+}
+
+/* -------------------- */
+/* 3. NAVEGAÇÃO (NAV) */
+/* -------------------- */
+
+.nav-principal {
+    background-color: #ffffff; /* Escuro */
+    border-bottom: 3px solid #f6f5f8; /* Destaque Amarelo */
+
+}
+
+.nav-list {
+    display: flex;
+    justify-content: center;
+    padding: 0 5%;
+    flex-wrap: wrap;
+    
+}
+
+.nav-list li {
+    margin: 0 10px;
+}
+
+.nav-btn {
+    display: block;
+    padding: 15px 20px;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-btn:hover,
+.nav-btn[aria-current="page"] {
+    background-color: #ffcc00;
+    color: #333;
+}
+
+/* -------------------- */
+/* 4. CONTEÚDO PRINCIPAL E GRID DE CONTATO */
+/* -------------------- */
+
+main {
+    padding: 2rem 5%;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.contact-section {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.contact-section h2 {
+    color: #007bff;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #ffcc00;
+    padding-bottom: 10px;
+}
+
+.intro-text {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+/* Estrutura Grid para o formulário e info */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas em desktop */
+    gap: 40px;
+}
+
+.contact-grid h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Estilo do Formulário */
+.contact-form .form-group {
+    margin-bottom: 15px;
+}
+
+.contact-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+.contact-form textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #ffcc00; /* Botão de destaque */
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background-color: #e6b800;
+}
+
+/* Estilo das Informações */
+.info-details {
+    margin-bottom: 30px;
+}
+
+.info-item {
+    margin-bottom: 20px;
+    padding: 10px 0;
+    border-bottom: 1px dashed #eee;
+}
+
+.info-item h4 {
+    color: #007bff;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.map-placeholder {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden; /* Garante que o iframe não vaze */
+}
+
+/* -------------------- */
+/* 5. RESPONSIVIDADE */
+/* -------------------- */
+
+@media (max-width: 992px) {
+    /* Passa para layout de uma coluna em tablets */
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form-container,
+    .contact-info-container {
+        padding: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Ajustes para mobile */
+    header {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem 3%;
+    }
+
+    .header-left {
+        margin-bottom: 10px;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .nav-list li {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-btn {
+        padding: 10px 15px;
+        text-align: center;
+    }
+
+    main {
+        padding: 1rem 3%;
+    }
+
+    .contact-section {
+        padding: 20px;
+    }
+}
